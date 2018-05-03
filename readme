@@ -3,4 +3,5 @@ wiring to the RasPiRobot V3 hat -- 8 AA rechargable Ni-MH batter pack:  red -> +
 With caster in back, right motor: red -> R:rightmost terminal, black -> R:leftmost terminal (when facing robot from the front / looking at the ultrasonic eyes)
                      left  motor: red -> L:leftmost terminal,  black -> L:rightmost terminal (yes the two motor wires are 'reversed' relative to each other)
 
-
+v1.1 -- Slowed the forward speed to 33% of original speed.  Also reduced the random turn speed from 50% to 33%
+issues -- ultrasonic sensor doesn't always detect obstacles especially when approaching at an angle.

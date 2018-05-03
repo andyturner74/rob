@@ -16,9 +16,9 @@ running = False
 def turn_randomly():
     turn_time = random.randint(1, 3)
     if random.randint(1, 2) == 1:
-        rr.left(turn_time, 0.5) # turn at half speed
+        rr.left(turn_time, 0.25) # turn at quarter speed
     else:
-        rr.right(turn_time, 0.5)
+        rr.right(turn_time, 0.25)
     rr.stop()
 
 try:
@@ -28,7 +28,7 @@ try:
         if distance < 50 and running:
             turn_randomly()
         if running:
-            rr.forward(0)
+            rr.forward(0, 0.33)  # set forward speed to 30% of full speed
         if rr.sw2_closed():
             running = not running
         if not running:
