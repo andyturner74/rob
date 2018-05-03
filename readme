@@ -1,1 +1,6 @@
-add usefull info here 
+v1.0 -- This version is way, way too fast.  First change will be to slow speed by at least half.
+wiring to the RasPiRobot V3 hat -- 8 AA rechargable Ni-MH batter pack:  red -> +V, black -> GND
+With caster in back, right motor: red -> R:rightmost terminal, black -> R:leftmost terminal (when facing robot from the front / looking at the ultrasonic eyes)
+                     left  motor: red -> L:leftmost terminal,  black -> L:rightmost terminal (yes the two motor wires are 'reversed' relative to each other)
+
+
