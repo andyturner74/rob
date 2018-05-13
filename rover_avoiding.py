@@ -31,14 +31,19 @@ def clear_right():
 
     ser.flushInput()
 
+    prev_save = False
+
     while True:
         distance = rr.get_distance()
         angle = ser.readline()
 
         if int(angle) > prev_angle: # scanning left
-            distance_left.append(distance)
+            if prev_save == False:
+                distance_left.append(distance)
         else: # scanning right
-            distance_right.append(distance)
+            if prev_save == False:
+                distance_right.append(distance)
+        prev_save = not prev_save
         prev_angle = int(angle)
         time.sleep(0.05)
         if int(angle) < 10: # done scanning
@@ -55,6 +60,9 @@ def clear_right():
         average_left = sum(distance_left) / float(len(distance_left))
     else:
         average_left = 0
+
+    print 'average left len is ' + str(len(distance_left)) + '\n'
+    print 'average right len is ' + str(len(distance_right)) + '\n'
 
     print 'average left is ' + str(average_left) + '\n'
     print 'average right is ' + str(average_right) + '\n'
@@ -95,7 +103,11 @@ try:
         del distance_left[:]
 
         if running:
-            rr.forward(0, 0.33)  # set forward speed to 30% of full speed
+            rr.forward(3, 0.33)  # set forward speed to 30% of full speed and move forward for 3 seconds
+            if clear_right():
+                turn_right()
+            else:
+                turn_left()
         if rr.sw2_closed():
             running = not running
         if not running:

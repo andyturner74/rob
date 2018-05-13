@@ -10,6 +10,7 @@
 #include <Servo.h>
 
 int ledPin = 13;
+bool prevSend = false;
 
 Servo myservo;  // create servo object to control a servo
 // twelve servo objects can be created on most boards
@@ -33,13 +34,19 @@ void loop() {
       for (pos = 90; pos <= 180; pos += 2) { // goes from 0 degrees to 180 degrees
         // in steps of 1 degree
         myservo.write(pos);              // tell servo to go to position in variable 'pos'
-        Serial.println(pos);
+        if (prevSend == false) {
+          Serial.println(pos);
+        }
+        prevSend = !prevSend;
         delay(15);                       // waits 15ms for the servo to reach the position
       }
       myservo.write(90);
       for (pos = 90; pos >= 0; pos -= 2) { // goes from 180 degrees to 0 degrees
         myservo.write(pos);              // tell servo to go to position in variable 'pos'
-        Serial.println(pos);
+        if (prevSend == false) {
+          Serial.println(pos);
+        }
+        prevSend = !prevSend;
         delay(15);                       // waits 15ms for the servo to reach the position
       }
       myservo.write(90);

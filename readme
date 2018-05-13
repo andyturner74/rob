@@ -18,3 +18,9 @@ the path either left or right is more free, and the robot will then turn slightl
 and continue moving forward.
 issues -- While moving forward the robot will fail to detect obstacles that it approaces at an angle.
 Need to stop and do a periodic sweep every few seconds while moving forward.
+
+v2.1 -- Will only move forward for 3 seconds at a time before stopping to sweep left and right.
+Reduced the number of sweep degrees sent by the Arduino over serial by half to reduce lag before
+left or right turn.  Reduced the number of distance values stored in array by half.
+issues -- If the robot runs into an object that is not detected it will try to keep moving forward.
+Need to add wheel encoders to detect this.
