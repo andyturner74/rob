@@ -5,3 +5,16 @@ With caster in back, right motor: red -> R:rightmost terminal, black -> R:leftmo
 
 v1.1 -- Slowed the forward speed to 33% of original speed.  Also reduced the random turn speed from 50% to 33%
 issues -- ultrasonic sensor doesn't always detect obstacles especially when approaching at an angle.
+
+v2.0 -- Put the ultrasonic sensor on a servo controlled by an Arduino.
+The robot will move foward until sensing a distance < 50 and will then stop and go backwards
+a small amount.  The Pi will then send the character '1' over USB serial to the Arduino, 
+which will cause the Arduino to control the servo by sweeping left and then right.  While
+sweeping the Arduino will send the servo coordinates over serial to the Pi, which will use the
+data to determine if the sensor is sweeping left or right.  If sweeping left it will store the sensor
+distances in a 'left' array, otherwise it will store distances in a 'right' array.  After the sweep the 
+Pi will take the average of the left and right array disances.  Whichever average is greater means
+the path either left or right is more free, and the robot will then turn slightly in this direction
+and continue moving forward.
+issues -- While moving forward the robot will fail to detect obstacles that it approaces at an angle.
+Need to stop and do a periodic sweep every few seconds while moving forward.
